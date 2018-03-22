@@ -15,8 +15,10 @@
     return e;
   };
 })();
-
 (function(moment) {
+
+  var FORMAT_AGO_BEFORE = 'Hace';
+  var FORMAT_AGO_AFTER = 'Dentro de';
 
   var FORMAT_SECONDS = '{ago} unos segundos';
 
@@ -37,6 +39,8 @@
     var $this = this;
 
     var _formats = {
+      'ago_before': FORMAT_AGO_BEFORE,
+      'ago_after': FORMAT_AGO_AFTER,
       'seconds': FORMAT_SECONDS,
       'minutes_singular': FORMAT_MINUTES_SINGULAR,
       'minutes_plural': FORMAT_MINUTES_PLURAL,
@@ -116,7 +120,7 @@
     function _formatOutput(format, data) {
 
       var _formatData = {
-        'ago': data['ago'] ? 'Dentro de': 'Hace',
+        'ago': data['ago'] ? _formats['ago_after']: _formats['ago_before'],
         'diff_seconds': data['seconds'],
         'diff_minutes': data['minutes'],
         'diff_hours': data['hours'],
